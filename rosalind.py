@@ -17,3 +17,20 @@ def fasta_read(file):
         return file_edit
 
 
+
+def amino_combo_dict():
+    ''' 
+    no inputs
+    returns a dictionary of amino acid letter abrevs and the # of possible ways to get each letter from RNA
+    
+    '''
+    import re
+    from collections import Counter
+
+    # reading codons
+    with open('Inferring\ mRNA\ from\ Protein/codon_talbe.txt', 'r') as f_codon:
+        aminos_counter = Counter(''.join(re.findall(' [A-Z] | [A-Z]\\n', f_codon.read())).split())
+        aminos_combos_dict = dict(zip(aminos_counter.keys(), aminos_counter.values()))
+
+    return aminos_combos_dict
+
