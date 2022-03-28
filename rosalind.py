@@ -1,3 +1,14 @@
+
+# imports
+
+# structures
+# import imp
+
+
+DNA_complement = {'A': 'T', 'T': 'A', 'G': 'C', 'C': 'G'}
+Nucleotides = ['A', 'C', 'T', 'G']
+
+
 def fasta_read(file):
     """
     :param file: FASTA FILE
@@ -17,20 +28,37 @@ def fasta_read(file):
         return file_edit
 
 
-
 def amino_combo_dict():
     ''' 
     no inputs
     returns a dictionary of amino acid letter abrevs and the # of possible ways to get each letter from RNA
-    
+
     '''
     import re
     from collections import Counter
 
     # reading codons
     with open('Inferring\ mRNA\ from\ Protein/codon_talbe.txt', 'r') as f_codon:
-        aminos_counter = Counter(''.join(re.findall(' [A-Z] | [A-Z]\\n', f_codon.read())).split())
-        aminos_combos_dict = dict(zip(aminos_counter.keys(), aminos_counter.values()))
+        aminos_counter = Counter(
+            ''.join(re.findall(' [A-Z] | [A-Z]\\n', f_codon.read())).split())
+        aminos_combos_dict = dict(
+            zip(aminos_counter.keys(), aminos_counter.values()))
 
     return aminos_combos_dict
 
+
+def countNucFrequency(seq):
+    import collections
+
+    '''Creates dictionary with # of nucleotides in sequence'''
+    return dict(collections.Counter(seq))
+
+
+def transcription(seq):
+    '''Replaces T with U'''
+    return seq.replace('T', 'U')
+
+
+def reverse_complementDNA(seq):
+    '''Swapping adenine with thymine and guanine with cytosine, then reversing'''
+    return "".join(DNA_complement[nuc] for nuc in seq)[::-1]
