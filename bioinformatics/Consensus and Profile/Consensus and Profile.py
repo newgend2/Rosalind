@@ -9,7 +9,11 @@
 
 # FASTA FILES CAN HAVE MULTIPLE LINES WHERE THE SEQUENCE IS IN BETWEEN SEPARATE SEQUENCES.
 # The following algorithm extracts each sequence in its entirety even if it spans multiple lines.
-file = 'rosalind_cons.txt'
+
+import os
+os.chdir('Rosalind/bioinformatics/Consensus and Profile/')
+print(os.getcwd())
+file = './rosalind_cons.txt'
 with open(file) as f:
     # split file into list
     file_raw = f.read().split()
@@ -42,7 +46,8 @@ for ltr in ['A', 'C', 'G', 'T']:
     intermed = []
     for seq_ltr in range(len(file_edit[0])):
         #
-        ltr_column = ''.join([file_edit[seq_row][seq_ltr] for seq_row in range(0, len(file_edit))])
+        ltr_column = ''.join([file_edit[seq_row][seq_ltr]
+                             for seq_row in range(0, len(file_edit))])
         # print(ltr_column)
 
         # for each letter build a row showing how many of that letter there is in each column position
@@ -68,6 +73,3 @@ print(''.join(consensus))
 # profile
 for key in profile.keys():
     print(f'{key}:  {(profile[key])}')
-
-
-

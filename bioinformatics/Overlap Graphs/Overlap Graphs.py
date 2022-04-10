@@ -1,4 +1,14 @@
-file = 'rosalind_grph.txt'
+
+
+import sys
+sys.path.insert(1, 'c:\\Users\\nate\\PycharmProjects\\Rosalind/')
+# print(sys.path)
+# import os
+# print(os.getcwd())
+from rosalind import fasta_read
+
+
+file = './Rosalind/bioinformatics/Overlap Graphs/rosalind_grph.txt'
 
 # Goal: create a dictionary out of fasta file with new sequence tags as keys and their
 # Corresponding sequences strings as values
@@ -62,8 +72,8 @@ file = 'rosalind_grph.txt'
 #             match = bool(len([part for part in v2 if part in v]))
 #             if match:
 #                 print(f'{k}\t{k2}')
-from rosalind import fasta_read
-file = 'rosalind_grph.txt'
+
+
 ros_dict = fasta_read(file)
 seqs = list(ros_dict.values())
 ros = list(ros_dict.keys())
